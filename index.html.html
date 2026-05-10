@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<!--
+  ════════════════════════════════════════════════════════════════════
+  MOSES KINUTHIA — CYBERSECURITY PORTFOLIO
+  ════════════════════════════════════════════════════════════════════
+
+  HOW TO EDIT THIS PORTFOLIO
+  ─────────────────────────
+  1. Open this file in any text editor (VS Code, Notepad++, Sublime, etc.)
+  2. Find the section you want to change using Ctrl+F / Cmd+F
+  3. Look for "EDIT:" comments — they show you exactly what to change
+  4. Save the file. That's it.
+
+  HOW TO HOST IT
+  ──────────────
+  Option A (easiest): Push to your GitHub repo "Moses-Kinuthia.github.io"
+                       as "index.html" — it goes live automatically at
+                       moses-kinuthia.github.io
+  Option B: Drop into Lovable.dev, Netlify Drop, or Vercel
+  Option C: Open it directly in a browser to preview
+
+  ════════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- EDIT: Browser tab title -->
+<title>Moses Kinuthia — SOC Analyst & Detection Engineer</title>
+
+<!-- EDIT: SEO description for Google search results -->
+<meta name="description" content="Moses Kinuthia — SOC Analyst, Detection Engineer, and Threat Hunter based in Nairobi, Kenya. Building enterprise-grade security operations through hands-on lab work and financial sector expertise.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Edit colors here to change the entire site
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --navy:       #0a1628;
+  --navy-mid:   #0f2044;
+  --navy-light: #162d5a;
+  --navy-panel: #0d1e3a;
+  --gold:       #c9a84c;
+  --gold-light: #e2c06a;
+  --gold-dim:   rgba(201,168,76,0.18);
+  --gold-line:  rgba(201,168,76,0.35);
+  --white:      #ffffff;
+  --off-white:  #f0eee8;
+  --slate:      #8a9ab8;
+  --slate-dim:  #4a5878;
+  --green:      #81c784;
+  --blue:       #64b5f6;
+  --amber:      #ffb74d;
+  --red:        #e57373;
+  --body:       'DM Sans', sans-serif;
+  --display:    'Cormorant Garamond', serif;
+  --mono:       'JetBrains Mono', 'Courier New', monospace;
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
+html { scroll-behavior:smooth; }
+body { font-family:var(--body); background:var(--navy); color:var(--off-white); line-height:1.7; overflow-x:hidden; }
+::-webkit-scrollbar { width:4px } ::-webkit-scrollbar-track { background:var(--navy) } ::-webkit-scrollbar-thumb { background:var(--gold-line) }
+
+/* ═══════════ NAV ═══════════ */
+nav { position:fixed; top:0; left:0; right:0; z-index:900; height:68px; display:flex; align-items:center; justify-content:space-between; padding:0 4rem; background:rgba(10,22,40,0.94); border-bottom:1px solid rgba(201,168,76,0.15); backdrop-filter:blur(12px); }
+.nav-wordmark { font-family:var(--display); font-size:1.25rem; font-weight:600; color:var(--white); letter-spacing:0.04em; }
+.nav-wordmark span { color:var(--gold); }
+.nav-links { display:flex; align-items:center; gap:2.2rem; list-style:none; }
+.nav-links a { font-size:0.78rem; font-weight:500; color:var(--slate); text-decoration:none; letter-spacing:0.06em; transition:color 0.2s; }
+.nav-links a:hover { color:var(--gold); }
+.nav-cta { padding:0.5rem 1.4rem; border:1px solid var(--gold-line); color:var(--gold)!important; transition:background 0.2s,color 0.2s!important; }
+.nav-cta:hover { background:var(--gold)!important; color:var(--navy)!important; }
+
+/* ═══════════ HERO ═══════════ */
+#hero { min-height:100vh; display:grid; grid-template-columns:1fr 400px; align-items:center; gap:5rem; padding:10rem 4rem 6rem; position:relative; overflow:hidden; }
+#hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 65% 55% at 65% 50%,rgba(201,168,76,0.06) 0%,transparent 70%); pointer-events:none; }
+#hero::after { content:''; position:absolute; top:0; right:420px; width:1px; height:100%; background:linear-gradient(180deg,transparent,rgba(201,168,76,0.25) 30%,rgba(201,168,76,0.25) 70%,transparent); opacity:0.5; }
+
+.hero-left { position:relative; z-index:1; animation:riseIn 0.9s ease both; }
+.hero-eyebrow { display:flex; align-items:center; gap:0.8rem; margin-bottom:2rem; }
+.eyebrow-line { width:36px; height:1px; background:var(--gold); }
+.eyebrow-text { font-size:0.7rem; font-weight:500; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; }
+.hero-name { font-family:var(--display); font-size:clamp(3rem,5.5vw,5rem); font-weight:300; line-height:1.05; color:var(--white); margin-bottom:0.4rem; }
+.hero-name strong { display:block; font-weight:700; }
+.hero-title { font-family:var(--display); font-size:clamp(1.1rem,2vw,1.45rem); font-weight:400; color:var(--gold); letter-spacing:0.04em; margin-bottom:1.8rem; }
+.hero-divider { width:60px; height:2px; background:linear-gradient(90deg,var(--gold),transparent); margin-bottom:1.8rem; }
+.hero-bio { font-size:0.97rem; font-weight:300; color:var(--slate); line-height:1.9; max-width:540px; margin-bottom:2.5rem; }
+.hero-bio strong { color:var(--off-white); font-weight:500; }
+.hero-stats { display:flex; gap:2.5rem; margin-bottom:2.8rem; padding:1.6rem 0; border-top:1px solid rgba(201,168,76,0.12); border-bottom:1px solid rgba(201,168,76,0.12); flex-wrap:wrap; }
+.hstat-n { display:block; font-family:var(--display); font-size:2.4rem; font-weight:700; color:var(--gold); line-height:1; margin-bottom:0.3rem; }
+.hstat-l { font-size:0.65rem; color:var(--slate); letter-spacing:0.12em; text-transform:uppercase; font-weight:500; }
+.hero-actions { display:flex; gap:1rem; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.85rem 2rem; font-family:var(--body); font-size:0.78rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; cursor:pointer; border:none; transition:all 0.25s; }
+.btn-gold { background:var(--gold); color:var(--navy); }
+.btn-gold:hover { background:var(--gold-light); box-shadow:0 8px 32px rgba(201,168,76,0.25); transform:translateY(-1px); }
+.btn-ghost { background:transparent; color:var(--off-white); border:1px solid var(--slate-dim); }
+.btn-ghost:hover { border-color:var(--gold-line); color:var(--gold); }
+
+/* PHOTO */
+.hero-right { position:relative; z-index:1; animation:riseIn 1.1s ease both; }
+.photo-frame { position:relative; width:100%; aspect-ratio:3/4; max-height:500px; background:var(--navy-panel); border:1px solid var(--gold-line); overflow:hidden; cursor:pointer; }
+.photo-frame::before { content:''; position:absolute; top:14px; right:-14px; bottom:-14px; left:14px; border:1px solid rgba(201,168,76,0.18); z-index:-1; }
+.photo-frame img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease; }
+.photo-frame:hover img { transform:scale(1.03); }
+.photo-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; color:var(--slate-dim); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; text-align:center; padding:2rem; transition:all 0.2s; }
+.photo-placeholder svg { width:52px; height:52px; opacity:0.3; stroke:currentColor; fill:none; stroke-width:1; }
+.photo-placeholder .pp-hint { opacity:0.4; font-size:0.68rem; text-transform:none; letter-spacing:0.05em; }
+.photo-frame:hover .photo-placeholder { color:var(--gold); }
+.photo-frame:hover .photo-placeholder svg { opacity:0.55; }
+.photo-hover-label { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(0deg,rgba(10,22,40,0.95),transparent); padding:2.5rem 1.5rem 1.2rem; opacity:0; transition:opacity 0.3s; font-size:0.65rem; color:var(--gold); letter-spacing:0.15em; text-transform:uppercase; }
+.photo-frame:hover .photo-hover-label { opacity:1; }
+#photo-input { display:none; }
+
+/* ═══════════ SECTIONS ═══════════ */
+section { padding:7rem 4rem; position:relative; }
+.section-inner { max-width:1200px; margin:0 auto; }
+.section-eyebrow { display:flex; align-items:center; gap:0.8rem; margin-bottom:1.2rem; }
+.section-eyebrow .line { width:28px; height:1px; background:var(--gold); }
+.section-eyebrow .label { font-size:0.68rem; font-weight:500; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; }
+.section-heading { font-family:var(--display); font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:300; color:var(--white); line-height:1.15; margin-bottom:1rem; }
+.section-heading strong { font-weight:700; }
+.section-subtext { font-size:0.93rem; color:var(--slate); max-width:600px; line-height:1.85; margin-bottom:4rem; }
+
+/* ABOUT */
+#about { background:var(--navy-mid); }
+.about-grid { display:grid; grid-template-columns:1fr 360px; gap:5rem; align-items:start; }
+.about-body p { font-size:0.95rem; color:var(--slate); line-height:1.9; margin-bottom:1.4rem; }
+.about-body p strong { color:var(--off-white); font-weight:500; }
+.about-body p em { color:var(--gold); font-style:normal; }
+.about-quote { margin-top:2.5rem; padding:1.8rem 2rem; border-left:3px solid var(--gold); background:rgba(201,168,76,0.05); }
+.about-quote p { font-family:var(--display); font-size:1.1rem; font-weight:400; color:var(--off-white); font-style:italic; line-height:1.7; margin:0; }
+
+.side-panel { background:var(--navy-panel); border:1px solid rgba(201,168,76,0.15); padding:2.2rem; }
+.side-panel + .side-panel { margin-top:1.2rem; }
+.side-panel-title { font-size:0.65rem; font-weight:500; color:var(--gold); letter-spacing:0.18em; text-transform:uppercase; padding-bottom:1.2rem; border-bottom:1px solid rgba(201,168,76,0.1); margin-bottom:1.5rem; }
+.cert-row { display:flex; align-items:flex-start; gap:1rem; padding:0.95rem 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+.cert-row:last-child { border-bottom:none; padding-bottom:0; }
+.cert-check { width:20px; height:20px; flex-shrink:0; background:rgba(201,168,76,0.1); border:1px solid var(--gold-line); display:flex; align-items:center; justify-content:center; margin-top:2px; }
+.cert-check svg { width:10px; height:10px; stroke:var(--gold); fill:none; stroke-width:2.5; }
+.cert-name { font-size:0.84rem; font-weight:500; color:var(--off-white); display:block; margin-bottom:0.2rem; }
+.cert-org { font-size:0.7rem; color:var(--slate); }
+.fact-row { display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.78rem; }
+.fact-row:last-child { border-bottom:none; }
+.fact-key { color:var(--slate); }
+.fact-val { color:var(--off-white); font-weight:500; }
+
+/* EXPERIENCE TIMELINE */
+#experience { background:var(--navy); }
+.timeline { position:relative; padding-left:2rem; border-left:1px solid var(--gold-line); }
+.timeline-item { position:relative; padding:0 0 3rem 2rem; }
+.timeline-item:last-child { padding-bottom:0; }
+.timeline-dot { position:absolute; left:-2.4rem; top:0.4rem; width:12px; height:12px; background:var(--gold); border:2px solid var(--navy); }
+.timeline-date { font-size:0.7rem; color:var(--gold); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem; font-weight:500; }
+.timeline-title { font-family:var(--display); font-size:1.4rem; font-weight:600; color:var(--white); margin-bottom:0.3rem; }
+.timeline-org { font-size:0.85rem; color:var(--slate); margin-bottom:1rem; }
+.timeline-org em { color:var(--gold); font-style:normal; }
+.timeline-body { font-size:0.88rem; color:var(--slate); line-height:1.85; }
+.timeline-body ul { list-style:none; margin-top:0.6rem; }
+.timeline-body li { padding:0.3rem 0 0.3rem 1.2rem; position:relative; }
+.timeline-body li::before { content:'›'; position:absolute; left:0; color:var(--gold); font-weight:700; }
+.timeline-body li strong { color:var(--off-white); font-weight:500; }
+
+/* LAB */
+#lab { background:var(--navy-mid); }
+.lab-arch { background:var(--navy-panel); border:1px solid rgba(201,168,76,0.12); padding:2.5rem; margin-bottom:3rem; font-family:var(--mono); font-size:0.77rem; line-height:2; color:var(--slate); overflow-x:auto; }
+.la-h1 { color:var(--gold); font-weight:600; }
+.la-h2 { color:var(--off-white); }
+.la-h3 { color:var(--blue); }
+.lab-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5px; background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.1); margin-bottom:3rem; }
+.lab-comp { background:var(--navy-panel); padding:2rem 1.8rem; transition:background 0.2s; }
+.lab-comp:hover { background:rgba(10,22,40,0.96); }
+.comp-type { font-size:0.62rem; font-weight:500; color:var(--gold); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.8rem; padding-bottom:0.8rem; border-bottom:1px solid rgba(201,168,76,0.08); }
+.comp-name { font-size:0.98rem; font-weight:500; color:var(--white); margin-bottom:0.35rem; }
+.comp-role { font-size:0.76rem; color:var(--slate); line-height:1.6; margin-bottom:0.9rem; }
+.comp-ip { display:inline-block; font-size:0.67rem; font-family:var(--mono); color:var(--blue); background:rgba(100,181,246,0.07); border:1px solid rgba(100,181,246,0.15); padding:0.2rem 0.6rem; }
+.event-panel { background:var(--navy-panel); border:1px solid rgba(201,168,76,0.12); padding:2.5rem; }
+.event-panel-title { font-size:0.65rem; font-weight:500; color:var(--gold); letter-spacing:0.18em; text-transform:uppercase; padding-bottom:1.2rem; border-bottom:1px solid rgba(201,168,76,0.08); margin-bottom:2rem; }
+.event-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0.7rem; }
+.event-row { display:flex; align-items:center; gap:1rem; padding:0.7rem 1rem; border:1px solid rgba(255,255,255,0.04); transition:border-color 0.2s; }
+.event-row:hover { border-color:var(--gold-line); }
+.eid { font-family:var(--mono); font-size:0.76rem; font-weight:600; color:var(--gold); flex-shrink:0; min-width:36px; }
+.edesc { font-size:0.74rem; color:var(--slate); line-height:1.4; }
+
+/* PROJECTS */
+#projects { background:var(--navy); }
+.projects-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.1); }
+.project-card { background:var(--navy-panel); padding:2.8rem; position:relative; transition:background 0.25s; }
+.project-card:hover { background:rgba(9,18,36,0.97); }
+.project-card.featured { border-top:2px solid var(--gold); }
+.proj-label { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; }
+.proj-num { font-size:0.63rem; font-weight:500; color:var(--slate-dim); letter-spacing:0.18em; text-transform:uppercase; }
+.proj-badge { font-size:0.58rem; font-weight:500; color:var(--gold); letter-spacing:0.15em; text-transform:uppercase; border:1px solid var(--gold-line); padding:0.2rem 0.6rem; }
+.proj-title { font-family:var(--display); font-size:1.3rem; font-weight:600; color:var(--white); line-height:1.3; margin-bottom:1rem; }
+.proj-desc { font-size:0.83rem; color:var(--slate); line-height:1.9; margin-bottom:1.6rem; }
+.proj-scenarios { margin-bottom:1.6rem; }
+.proj-scenario { display:flex; gap:1rem; align-items:flex-start; padding:0.58rem 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:0.77rem; }
+.proj-scenario:last-child { border-bottom:none; }
+.ps-letter { font-weight:600; color:var(--gold); flex-shrink:0; font-size:0.72rem; margin-top:1px; }
+.ps-text { color:var(--slate); line-height:1.6; }
+.proj-tags { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.6rem; }
+.ptag { font-size:0.6rem; font-weight:500; color:var(--slate); border:1px solid rgba(255,255,255,0.07); padding:0.25rem 0.7rem; letter-spacing:0.08em; text-transform:uppercase; transition:all 0.2s; }
+.ptag:hover { border-color:var(--gold-line); color:var(--gold); }
+.proj-link { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.74rem; font-weight:500; color:var(--gold); text-decoration:none; letter-spacing:0.08em; transition:gap 0.2s; }
+.proj-link:hover { gap:0.85rem; }
+.proj-link svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; }
+
+/* SIMULATIONS */
+#simulations { background:var(--navy-mid); }
+.sim-wrapper { border:1px solid rgba(201,168,76,0.12); overflow:hidden; }
+.sim-head { display:grid; grid-template-columns:70px 2fr 1.4fr 100px 100px 110px 100px; background:rgba(201,168,76,0.05); border-bottom:1px solid rgba(201,168,76,0.12); padding:0 2rem; }
+.sim-th { padding:1rem 0.5rem; font-size:0.6rem; font-weight:500; color:var(--slate-dim); letter-spacing:0.16em; text-transform:uppercase; }
+.sim-row { display:grid; grid-template-columns:70px 2fr 1.4fr 100px 100px 110px 100px; padding:0 2rem; border-bottom:1px solid rgba(255,255,255,0.03); align-items:center; transition:background 0.15s; }
+.sim-row:last-child { border-bottom:none; }
+.sim-row:hover { background:rgba(201,168,76,0.035); }
+.sim-td { padding:1rem 0.5rem; font-size:0.76rem; }
+.s-id { font-family:var(--mono); font-weight:600; color:var(--gold); font-size:0.7rem; }
+.s-name { color:var(--off-white); font-weight:500; }
+.s-tools { color:var(--slate); font-size:0.7rem; }
+.s-rule { color:var(--blue); font-family:var(--mono); font-size:0.68rem; }
+.s-evt { color:var(--slate); font-family:var(--mono); font-size:0.68rem; }
+.s-mitre { color:var(--green); font-family:var(--mono); font-size:0.68rem; }
+.badge { display:inline-flex; align-items:center; font-size:0.58rem; font-weight:500; padding:0.25rem 0.7rem; letter-spacing:0.1em; text-transform:uppercase; }
+.b-done { background:rgba(129,199,132,0.08); color:var(--green); border:1px solid rgba(129,199,132,0.2); }
+.b-prog { background:rgba(255,183,77,0.07); color:var(--amber); border:1px solid rgba(255,183,77,0.2); }
+
+/* SKILLS */
+#skills { background:var(--navy); }
+.skills-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.1); }
+.skill-group { background:var(--navy-panel); padding:2.5rem; transition:background 0.2s; }
+.skill-group:hover { background:rgba(9,18,36,0.97); }
+.sg-title { font-size:0.65rem; font-weight:500; color:var(--gold); letter-spacing:0.18em; text-transform:uppercase; padding-bottom:1.2rem; border-bottom:1px solid rgba(201,168,76,0.08); margin-bottom:1.5rem; }
+.sg-pills { display:flex; flex-wrap:wrap; gap:0.5rem; }
+.pill { font-size:0.72rem; color:var(--slate); border:1px solid rgba(255,255,255,0.07); padding:0.35rem 0.85rem; letter-spacing:0.05em; transition:all 0.2s; }
+.pill:hover { border-color:var(--gold-line); color:var(--gold-light); background:rgba(201,168,76,0.05); }
+
+/* ROADMAP */
+#roadmap { background:var(--navy-mid); }
+.roadmap-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.1); }
+.roadmap-stage { background:var(--navy-panel); padding:2.5rem; position:relative; transition:background 0.2s; }
+.roadmap-stage:hover { background:rgba(9,18,36,0.97); }
+.roadmap-stage.current { border-top:2px solid var(--gold); }
+.rs-time { font-size:0.62rem; color:var(--gold); letter-spacing:0.18em; text-transform:uppercase; font-weight:500; margin-bottom:0.8rem; }
+.rs-title { font-family:var(--display); font-size:1.2rem; font-weight:600; color:var(--white); margin-bottom:0.4rem; }
+.rs-role { font-size:0.78rem; color:var(--slate); margin-bottom:1.2rem; padding-bottom:1.2rem; border-bottom:1px solid rgba(255,255,255,0.05); }
+.rs-list { list-style:none; }
+.rs-list li { font-size:0.78rem; color:var(--slate); padding:0.4rem 0 0.4rem 1.2rem; position:relative; line-height:1.6; }
+.rs-list li::before { content:'›'; position:absolute; left:0; color:var(--gold); font-weight:700; }
+
+/* LEARNING LOG */
+#learning { background:var(--navy); }
+.log-list { display:flex; flex-direction:column; gap:1px; background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.1); }
+.log-item { background:var(--navy-panel); padding:1.5rem 2rem; display:grid; grid-template-columns:130px 1fr 100px; gap:2rem; align-items:center; transition:background 0.2s; }
+.log-item:hover { background:rgba(9,18,36,0.97); }
+.log-date { font-family:var(--mono); font-size:0.72rem; color:var(--gold); letter-spacing:0.05em; }
+.log-text { font-size:0.85rem; color:var(--off-white); line-height:1.6; }
+.log-text strong { color:var(--white); font-weight:500; }
+.log-tag { font-size:0.6rem; color:var(--slate); letter-spacing:0.12em; text-transform:uppercase; text-align:right; }
+
+/* CONTACT */
+#contact { background:var(--navy-mid); }
+.contact-grid { display:grid; grid-template-columns:1fr 400px; gap:5rem; align-items:start; }
+.avail-tag { display:inline-flex; align-items:center; gap:0.6rem; padding:0.6rem 1.2rem; border:1px solid rgba(129,199,132,0.25); background:rgba(129,199,132,0.06); font-size:0.7rem; font-weight:500; color:var(--green); letter-spacing:0.1em; margin-bottom:2.5rem; }
+.avail-dot { width:6px; height:6px; border-radius:50%; background:var(--green); animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.contact-intro { font-size:0.93rem; color:var(--slate); line-height:1.9; margin-bottom:2.5rem; }
+.contact-intro strong { color:var(--off-white); font-weight:500; }
+.contact-links { display:flex; flex-direction:column; gap:1rem; }
+.contact-link { display:flex; align-items:center; gap:1.5rem; padding:1.3rem 1.8rem; background:var(--navy-panel); border:1px solid rgba(201,168,76,0.1); text-decoration:none; transition:all 0.25s; }
+.contact-link:hover { border-color:var(--gold-line); background:rgba(201,168,76,0.04); transform:translateX(5px); }
+.cl-icon { width:38px; height:38px; flex-shrink:0; background:rgba(201,168,76,0.07); border:1px solid var(--gold-dim); display:flex; align-items:center; justify-content:center; }
+.cl-icon svg { width:16px; height:16px; stroke:var(--gold); fill:none; stroke-width:1.8; }
+.cl-label { font-size:0.62rem; color:var(--slate); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.2rem; }
+.cl-value { font-size:0.83rem; font-weight:500; color:var(--off-white); }
+.cl-arr { margin-left:auto; color:var(--slate-dim); }
+.why-panel { background:var(--navy-panel); border:1px solid rgba(201,168,76,0.12); border-top:2px solid var(--gold); padding:2.2rem; }
+.why-title { font-size:0.65rem; color:var(--gold); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:1.2rem; }
+.why-body { font-size:0.87rem; color:var(--slate); line-height:1.85; }
+.why-body strong { color:var(--off-white); font-weight:500; }
+.why-body p { margin-bottom:1rem; }
+.why-body p:last-child { margin-bottom:0; }
+
+/* FOOTER */
+footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1); padding:2.5rem 4rem; display:flex; align-items:center; justify-content:space-between; }
+.footer-copy { font-size:0.72rem; color:var(--slate-dim); }
+.footer-copy a { color:var(--gold); text-decoration:none; }
+.footer-links { display:flex; gap:2rem; }
+.footer-links a { font-size:0.72rem; color:var(--slate-dim); text-decoration:none; transition:color 0.2s; }
+.footer-links a:hover { color:var(--gold); }
+
+@keyframes riseIn { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+
+/* RESPONSIVE */
+@media(max-width:1080px){
+  #hero { grid-template-columns:1fr; gap:4rem; padding:9rem 3rem 5rem; }
+  #hero::after { display:none; }
+  .hero-right { max-width:340px; }
+  .about-grid { grid-template-columns:1fr; gap:3rem; }
+  .contact-grid { grid-template-columns:1fr; gap:3rem; }
+}
+@media(max-width:900px){
+  nav { padding:0 2rem; }
+  section { padding:5rem 2.5rem; }
+  .nav-links li:not(:last-child) { display:none; }
+  .lab-grid { grid-template-columns:repeat(2,1fr); }
+  .projects-grid { grid-template-columns:1fr; }
+  .skills-grid { grid-template-columns:1fr; }
+  .roadmap-grid { grid-template-columns:1fr; }
+  .sim-head, .sim-row { grid-template-columns:60px 1fr 1fr 90px; }
+  .sim-th:nth-child(3),.sim-td:nth-child(3),.sim-th:nth-child(5),.sim-td:nth-child(5),.sim-th:nth-child(6),.sim-td:nth-child(6){ display:none; }
+  .log-item { grid-template-columns:100px 1fr; gap:1rem; }
+  .log-tag { display:none; }
+  footer { flex-direction:column; gap:1rem; text-align:center; padding:2rem; }
+}
+@media(max-width:600px){
+  #hero { padding:8rem 1.5rem 4rem; }
+  section { padding:4rem 1.5rem; }
+  nav { padding:0 1.5rem; }
+  .hero-stats { gap:1.5rem; }
+  .lab-grid { grid-template-columns:1fr; }
+  .sim-head, .sim-row { grid-template-columns:55px 1fr 85px; }
+  .sim-th:nth-child(4),.sim-td:nth-child(4){ display:none; }
+  footer { padding:2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- NAV — EDIT: Update navigation labels if you rename sections      -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-wordmark">Moses <span>Kinuthia</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#lab">Lab</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#simulations">Simulations</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- HERO SECTION                                                     -->
+<!-- EDIT: Your name, title, bio, stats, photo, and call-to-action    -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <!-- EDIT: Tagline beneath your name -->
+      <div class="eyebrow-text">SOC Analyst &nbsp;·&nbsp; Detection Engineer &nbsp;·&nbsp; Nairobi, Kenya</div>
+    </div>
+
+    <!-- EDIT: First name on top line, last name in <strong> below -->
+    <h1 class="hero-name">Moses<strong>Kinuthia</strong></h1>
+
+    <!-- EDIT: Professional title -->
+    <p class="hero-title">Blue Teamer &amp; Threat Hunter</p>
+    <div class="hero-divider"></div>
+
+    <!-- EDIT: Hero bio paragraph (keep it ~3 sentences) -->
+    <p class="hero-bio">
+      Building and operating an <strong>enterprise-grade SOC home lab</strong> — Wazuh SIEM,
+      pfSense, Active Directory, and Kali Linux across four isolated network segments.
+      Backed by <strong>years in financial fraud detection, KYC, and AML compliance</strong>
+      at KCB Bank — translating real-world risk into precision detection engineering.
+    </p>
+
+    <!-- EDIT: Update the stat numbers and labels -->
+    <div class="hero-stats">
+      <div><span class="hstat-n">5</span><span class="hstat-l">Certifications</span></div>
+      <div><span class="hstat-n">7+</span><span class="hstat-l">Attack Scenarios</span></div>
+      <div><span class="hstat-n">5+</span><span class="hstat-l">Custom Rules</span></div>
+      <div><span class="hstat-n">UTC+3</span><span class="hstat-l">Timezone</span></div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-gold">View Projects</a>
+      <!-- EDIT: GitHub URL -->
+      <a href="https://github.com/Moses-Kinuthia" target="_blank" class="btn btn-ghost">GitHub Profile</a>
+    </div>
+  </div>
+
+  <!-- EDIT: To replace photo without uploading: change the src below to your image URL,
+            then add style="display:block" and remove the photo-placeholder div. -->
+  <div class="hero-right">
+    <div class="photo-frame" onclick="document.getElementById('photo-input').click()" title="Click to upload your photo">
+      <img id="profile-photo" src="" alt="Moses Kinuthia" style="display:none;">
+      <div class="photo-placeholder" id="photo-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <div>Upload Your Photo</div>
+        <div class="pp-hint">Click to add your professional headshot</div>
+      </div>
+      <div class="photo-hover-label">Click to change photo</div>
+    </div>
+    <input type="file" id="photo-input" accept="image/*">
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ABOUT SECTION                                                    -->
+<!-- EDIT: Your story, certifications, and quick facts                -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><div class="label">Who I Am</div></div>
+    <h2 class="section-heading">About <strong>Me</strong></h2>
+
+    <div class="about-grid">
+      <div class="about-body">
+        <!-- EDIT: About paragraphs — write in your own voice -->
+        <p>I am a cybersecurity professional in active transition, building toward a <strong>remote Tier 1 SOC Analyst role</strong> at an MSSP or remote-first security team. My foundation is practical — I have designed, built, and operate a distributed home lab that mirrors real enterprise security architecture.</p>
+
+        <p>My background at <em>KCB Bank</em> in fraud detection, KYC, and AML compliance is not incidental — it is a strategic differentiator. I understand <strong>how financial threats materialise in the real world</strong>, which informs how I write detection rules and investigate alerts. Most candidates simulate attacks. I have spent years recognising the patterns that precede them.</p>
+
+        <p>I completed a one-week SOC job shadowing programme with a SOC Specialist at KCB and hold certifications from CompTIA, Cisco, and ISC2. I hold a <strong>BSc in Agricultural Economics</strong>, which trained me in analytical thinking and pattern recognition — skills that translate directly to threat hunting and detection engineering.</p>
+
+        <p>Outside of work, I provide technical support for live-streaming church services to YouTube via OBS Studio. My East Africa timezone (UTC+3) provides natural coverage overlap for organisations running 24/7 operations.</p>
+
+        <div class="about-quote">
+          <!-- EDIT: Personal motto / signature quote -->
+          <p>"The quiet professional of the network — seeing everything, staying hidden until the alert fires."</p>
+        </div>
+      </div>
+
+      <div>
+        <!-- ───── CERTIFICATIONS PANEL ───── -->
+        <!-- EDIT: Add or remove cert rows. Copy a full <div class="cert-row">...</div> block to add more. -->
+        <div class="side-panel">
+          <div class="side-panel-title">Certifications</div>
+          <div class="cert-row">
+            <div class="cert-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div><span class="cert-name">CompTIA Security+</span><span class="cert-org">CompTIA</span></div>
+          </div>
+          <div class="cert-row">
+            <div class="cert-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div><span class="cert-name">CyberOps Associate</span><span class="cert-org">Cisco</span></div>
+          </div>
+          <div class="cert-row">
+            <div class="cert-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div><span class="cert-name">Certified in Cybersecurity (CC)</span><span class="cert-org">ISC2</span></div>
+          </div>
+          <div class="cert-row">
+            <div class="cert-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div><span class="cert-name">Introduction to Log Analysis</span><span class="cert-org">Red Team Leaders</span></div>
+          </div>
+          <div class="cert-row">
+            <div class="cert-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div><span class="cert-name">Python &amp; Machine Learning</span><span class="cert-org">Various Issuers</span></div>
+          </div>
+        </div>
+
+        <!-- ───── QUICK FACTS PANEL ───── -->
+        <!-- EDIT: Update these with your latest info -->
+        <div class="side-panel">
+          <div class="side-panel-title">At a Glance</div>
+          <div class="fact-row"><span class="fact-key">Location</span><span class="fact-val">Nairobi, Kenya</span></div>
+          <div class="fact-row"><span class="fact-key">Timezone</span><span class="fact-val">UTC +3 (EAT)</span></div>
+          <div class="fact-row"><span class="fact-key">Education</span><span class="fact-val">BSc, Agric. Economics</span></div>
+          <div class="fact-row"><span class="fact-key">Languages</span><span class="fact-val">English, Swahili</span></div>
+          <div class="fact-row"><span class="fact-key">Availability</span><span class="fact-val" style="color:var(--green)">Open to Roles</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- EXPERIENCE TIMELINE                                              -->
+<!-- EDIT: Add jobs, training, education. Copy a full timeline-item   -->
+<!--       block to add more entries.                                 -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><div class="label">Career &amp; Training</div></div>
+    <h2 class="section-heading">Professional <strong>Experience</strong></h2>
+    <p class="section-subtext">A path from financial services into cybersecurity — combining fraud detection expertise with hands-on security engineering.</p>
+
+    <div class="timeline">
+
+      <!-- EDIT: Most recent first. Copy this block to add more entries. -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Present — Active Transition</div>
+        <div class="timeline-title">SOC Analyst (In Training)</div>
+        <div class="timeline-org">Independent · <em>Self-directed lab &amp; portfolio build</em></div>
+        <div class="timeline-body">
+          <ul>
+            <li>Designed and built an <strong>enterprise-grade SOC home lab</strong> across two physical hosts with four pfSense network segments</li>
+            <li>Developed the <strong>Financial Fraud Threat Detection Pipeline</strong> — three full attack scenarios with custom Wazuh rules</li>
+            <li>Authored documentation, simulation write-ups, and detection rules pushed to GitHub</li>
+            <li>Targeting remote Tier 1 SOC Analyst roles at MSSPs and remote-first security teams</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Recent — One-Week Programme</div>
+        <div class="timeline-title">SOC Job Shadowing</div>
+        <div class="timeline-org">KCB Bank · <em>Mentored by SOC Specialist</em></div>
+        <div class="timeline-body">
+          <ul>
+            <li>Observed live SOC operations: alert triage, incident escalation workflows, and analyst tooling</li>
+            <li>Learned how detection engineering intersects with banking fraud monitoring at scale</li>
+            <li>Validated the home lab build against real-world enterprise SOC practice</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Multi-Year Tenure</div>
+        <div class="timeline-title">Bank Teller — Fraud, KYC &amp; AML</div>
+        <div class="timeline-org">KCB Bank, Nairobi · <em>Front-line financial crime prevention</em></div>
+        <div class="timeline-body">
+          <ul>
+            <li>Identified and escalated <strong>suspicious transaction patterns</strong> consistent with fraud, money laundering, and account takeover indicators</li>
+            <li>Performed <strong>KYC verification</strong> and <strong>AML compliance checks</strong> aligned with Central Bank of Kenya regulations</li>
+            <li>Developed deep practical understanding of <strong>financial threat actor behaviour</strong> — directly applicable to SOC detection writing</li>
+            <li>Maintained accuracy under high transaction volume and regulatory scrutiny</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">University</div>
+        <div class="timeline-title">BSc, Agricultural Economics</div>
+        <div class="timeline-org">Kenya · <em>Quantitative analysis &amp; data interpretation</em></div>
+        <div class="timeline-body">
+          <ul>
+            <li>Trained in <strong>statistical reasoning, data analysis, and pattern recognition</strong> — analytical foundations that translate directly to threat hunting</li>
+            <li>Built early proficiency in Python and data tools through coursework and self-study</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- SOC HOME LAB                                                     -->
+<!-- EDIT: Update IPs, components, and event IDs as your lab evolves  -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="lab">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><div class="label">Infrastructure</div></div>
+    <h2 class="section-heading">SOC <strong>Home Lab</strong></h2>
+    <p class="section-subtext">Enterprise-grade monitoring environment across two physical hosts. Four isolated network segments enforced by pfSense — WAN, LAN, management, and an air-gapped attack segment.</p>
+
+    <!-- ───── NETWORK ARCHITECTURE DIAGRAM ───── -->
+    <!-- EDIT: Update the IPs and host names if your lab changes. Keep monospace formatting intact. -->
+    <div class="lab-arch"><span class="la-h1">[ NETWORK ARCHITECTURE ]</span>
+
+  Internet → Home Router (192.168.8.x)
+              │
+              ├── <span class="la-h2">MACHINE A</span>  Lenovo ThinkPad T470s · 16 GB RAM · 256 GB SSD
+              │     ├── <span class="la-h1">pfSense</span>  WAN:192.168.8.224 · LAN:10.0.0.1 · OPT1:10.0.10.1 · OPT2:10.0.20.1
+              │     └── <span class="la-h1">Wazuh 4.14.1 SIEM</span>  10.0.10.11  [isolated labnet segment]
+              │
+              │  ── Physical Ethernet Bridge ──
+              │
+              └── <span class="la-h2">MACHINE B</span>  Borrowed Host · 16 GB RAM · 512 GB SSD
+                    ├── <span class="la-h1">DC01</span>  Windows Server 2019  10.0.0.10  [SOCLAB.local]
+                    ├── <span class="la-h1">WKSTNO1</span>  Windows Enterprise LTSC  10.0.0.100
+                    └── <span class="la-h3">Kali Linux</span>  10.0.20.11  [ISOLATED — attack segment only]</div>
+
+    <!-- ───── LAB COMPONENT CARDS ───── -->
+    <!-- EDIT: Add or remove components. Copy a full <div class="lab-comp">...</div> block to add more. -->
+    <div class="lab-grid">
+      <div class="lab-comp"><div class="comp-type">Firewall / Router</div><div class="comp-name">pfSense</div><div class="comp-role">Multi-interface routing, NAT, firewall rules, DHCP, syslog forwarding on port 514</div><div class="comp-ip">192.168.8.224</div></div>
+      <div class="lab-comp"><div class="comp-type">SIEM / EDR</div><div class="comp-name">Wazuh 4.14.1</div><div class="comp-role">Alert generation, log correlation, MITRE ATT&amp;CK mapping, custom rule engine, OpenSearch indexing</div><div class="comp-ip">10.0.10.11</div></div>
+      <div class="lab-comp"><div class="comp-type">Domain Controller</div><div class="comp-name">DC01</div><div class="comp-role">Windows Server 2019, Active Directory (SOCLAB.local), DNS, GPO, audit policy via registry</div><div class="comp-ip">10.0.0.10</div></div>
+      <div class="lab-comp"><div class="comp-type">Endpoint</div><div class="comp-name">WKSTNO1</div><div class="comp-role">Windows Enterprise LTSC, domain-joined, Sysmon deployed, Wazuh agent reporting to SIEM</div><div class="comp-ip">10.0.0.100</div></div>
+      <div class="lab-comp"><div class="comp-type">Attack Platform</div><div class="comp-name">Kali Linux</div><div class="comp-role">Adversary simulation — isolated to OPT2 attack segment, no LAN access by default firewall policy</div><div class="comp-ip">10.0.20.11</div></div>
+      <div class="lab-comp"><div class="comp-type">Telemetry Layer</div><div class="comp-name">Sysmon</div><div class="comp-role">Enhanced logging on DC01 and WKSTNO1 — process creation, network connections, FIM on sensitive paths</div><div class="comp-ip">Both hosts</div></div>
+    </div>
+
+    <!-- ───── KEY EVENT IDS PANEL ───── -->
+    <!-- EDIT: Add or remove events. Copy a full <div class="event-row">...</div> block to add more. -->
+    <div class="event-panel">
+      <div class="event-panel-title">Key Windows Event IDs Monitored</div>
+      <div class="event-grid">
+        <div class="event-row"><span class="eid">4625</span><span class="edesc">Failed logon — brute force detection</span></div>
+        <div class="event-row"><span class="eid">4624</span><span class="edesc">Successful logon — lateral movement tracking</span></div>
+        <div class="event-row"><span class="eid">4720</span><span class="edesc">User account created — persistence indicator</span></div>
+        <div class="event-row"><span class="eid">4728</span><span class="edesc">Added to security group — privilege escalation</span></div>
+        <div class="event-row"><span class="eid">1102</span><span class="edesc">Audit log cleared — anti-forensics behaviour</span></div>
+        <div class="event-row"><span class="eid">4740</span><span class="edesc">Account locked out — credential stuffing indicator</span></div>
+        <div class="event-row"><span class="eid">4648</span><span class="edesc">Explicit credential use — pass-the-hash signal</span></div>
+        <div class="event-row"><span class="eid">4672</span><span class="edesc">Special privileges assigned — privilege escalation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- PROJECTS                                                         -->
+<!-- EDIT: To add a project, copy a full <div class="project-card">   -->
+<!--       ...</div> block and update content.                        -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><div class="label">Featured Work</div></div>
+    <h2 class="section-heading">Selected <strong>Projects</strong></h2>
+    <p class="section-subtext">End-to-end detection engineering built on real infrastructure, not simulated environments. Every alert shown was generated in the lab.</p>
+
+    <div class="projects-grid">
+
+      <!-- ── PROJECT 01 (FEATURED) ── -->
+      <div class="project-card featured">
+        <div class="proj-label"><span class="proj-num">Project 01</span><span class="proj-badge">Featured</span></div>
+        <h3 class="proj-title">Financial Fraud Threat Detection Pipeline</h3>
+        <p class="proj-desc">End-to-end SOC detection engineering project simulating real-world financial cyber attacks inside Active Directory. Custom Wazuh rules mapped to MITRE ATT&amp;CK and PCI-DSS. Three complete scenarios with analyst write-ups.</p>
+        <div class="proj-scenarios">
+          <div class="proj-scenario"><span class="ps-letter">A</span><span class="ps-text">Account Takeover — nmap recon, enum4linux, netexec SMB credential stuffing → Event 4625 / 4740 detection</span></div>
+          <div class="proj-scenario"><span class="ps-letter">B</span><span class="ps-text">Insider Threat — AD recon, backdoor account creation (itsupport_backup), Domain Admin escalation, log clearing (1102)</span></div>
+          <div class="proj-scenario"><span class="ps-letter">C</span><span class="ps-text">Lateral Movement — post-compromise SMB/Kerberos, cross-endpoint detection via Event 4624 Type 3 &amp; 4769</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">Wazuh</span><span class="ptag">MITRE ATT&CK</span><span class="ptag">PCI-DSS</span><span class="ptag">Active Directory</span><span class="ptag">Python</span></div>
+        <a href="https://github.com/Moses-Kinuthia/Financial-Fraud-Cyber-Threat-Detection-Pipeline" target="_blank" class="proj-link">View on GitHub <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+      </div>
+
+      <!-- ── PROJECT 02 ── -->
+      <div class="project-card">
+        <div class="proj-label"><span class="proj-num">Project 02</span></div>
+        <h3 class="proj-title">SOC Home Lab — Distributed Architecture</h3>
+        <p class="proj-desc">Full technical documentation of a two-host distributed SOC environment including network schemas, pfSense configs, Wazuh agent configuration, and CIS hardening for Windows Server 2019.</p>
+        <div class="proj-scenarios">
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">pfSense multi-interface routing with default-deny firewall policy and explicit allow rules</span></div>
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">Centralised Wazuh agent config, syslog forwarding (port 514), Kali NAT rule, MITRE mapping</span></div>
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">Active Directory SOCLAB.local with registry audit policy fix and FIM on sensitive directories</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">pfSense</span><span class="ptag">Wazuh</span><span class="ptag">VirtualBox</span><span class="ptag">Windows Server 2019</span></div>
+        <a href="https://github.com/Moses-Kinuthia/soc-home-lab" target="_blank" class="proj-link">View on GitHub <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+      </div>
+
+      <!-- ── PROJECT 03 ── -->
+      <div class="project-card">
+        <div class="proj-label"><span class="proj-num">Project 03</span></div>
+        <h3 class="proj-title">SOC Simulation Write-ups</h3>
+        <p class="proj-desc">Incident-style analysis for each adversary simulation — full kill chain documentation: attack execution, SIEM alert firing, analyst triage decision, and detection gaps identified.</p>
+        <div class="proj-scenarios">
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">SMB Brute Force — Hydra, Metasploit / Rule 18152 / Event 4625</span></div>
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">Network Recon — Nmap / Wazuh + Suricata alerts / T1046</span></div>
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">SMB Enumeration — enum4linux / event correlation / T1087</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">Kali Linux</span><span class="ptag">Incident Response</span><span class="ptag">Detection Engineering</span></div>
+        <a href="https://github.com/Moses-Kinuthia/simulation-writeups" target="_blank" class="proj-link">View on GitHub <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+      </div>
+
+      <!-- ── PROJECT 04 ── -->
+      <div class="project-card">
+        <div class="proj-label"><span class="proj-num">Project 04</span></div>
+        <h3 class="proj-title">Alert Enrichment &amp; Custom Rule Set</h3>
+        <p class="proj-desc">Python-based Wazuh alert enrichment script and custom XML rule set. Parses <code style="color:var(--gold)">alerts.json</code> for triage context. Includes <code style="color:var(--gold)">local_rules.xml</code> with financial-sector-specific detections.</p>
+        <div class="proj-scenarios">
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">Rule 100020 — Level 10 regex, flags Kali Linux activity from attack segment IP range</span></div>
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">Rule 100035 — credential stuffing: 5+ failures within 60 seconds from a single source</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Wazuh Rules</span><span class="ptag">Threat Intel</span></div>
+        <a href="https://github.com/Moses-Kinuthia/Financial-Fraud-Cyber-Threat-Detection-Pipeline" target="_blank" class="proj-link">View Repository <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- SIMULATIONS TABLE                                                -->
+<!-- EDIT: Add new sims by copying a full <div class="sim-row">...</div> block. -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="simulations">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><div class="label">Adversary Emulation</div></div>
+    <h2 class="section-heading">SOC <strong>Simulations</strong></h2>
+    <p class="section-subtext">Controlled adversary simulations with verified detection outcomes in Wazuh. Every rule ID and event ID was triggered in the actual environment.</p>
+
+    <div class="sim-wrapper">
+      <div class="sim-head">
+        <div class="sim-th">ID</div>
+        <div class="sim-th">Simulation</div>
+        <div class="sim-th">Tools</div>
+        <div class="sim-th">Rule ID</div>
+        <div class="sim-th">Event ID</div>
+        <div class="sim-th">MITRE</div>
+        <div class="sim-th">Status</div>
+      </div>
+      <div class="sim-row"><div class="sim-td s-id">001</div><div class="sim-td s-name">ATO — Credential Stuffing</div><div class="sim-td s-tools">netexec, nmap, enum4linux</div><div class="sim-td s-rule">18152 / 100035</div><div class="sim-td s-evt">4625, 4740</div><div class="sim-td s-mitre">T1110.003</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
+      <div class="sim-row"><div class="sim-td s-id">002</div><div class="sim-td s-name">Insider Threat — Privileged Abuse</div><div class="sim-td s-tools">PowerShell, AD cmdlets</div><div class="sim-td s-rule">18110 / 18141</div><div class="sim-td s-evt">4720, 4728</div><div class="sim-td s-mitre">T1078 / T1136</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
+      <div class="sim-row"><div class="sim-td s-id">003</div><div class="sim-td s-name">Anti-Forensics — Log Clearing</div><div class="sim-td s-tools">wevtutil</div><div class="sim-td s-rule">63102</div><div class="sim-td s-evt">1102</div><div class="sim-td s-mitre">T1070.001</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
+      <div class="sim-row"><div class="sim-td s-id">004</div><div class="sim-td s-name">Lateral Movement</div><div class="sim-td s-tools">SMB / Kerberos</div><div class="sim-td s-rule">18152</div><div class="sim-td s-evt">4624, 4769</div><div class="sim-td s-mitre">T1021.002</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
+      <div class="sim-row"><div class="sim-td s-id">005</div><div class="sim-td s-name">SMB Brute Force</div><div class="sim-td s-tools">Hydra, Metasploit</div><div class="sim-td s-rule">18152</div><div class="sim-td s-evt">4625</div><div class="sim-td s-mitre">T1110</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
+      <div class="sim-row"><div class="sim-td s-id">006</div><div class="sim-td s-name">Network Reconnaissance</div><div class="sim-td s-tools">Nmap</div><div class="sim-td s-rule">Suricata</div><div class="sim-td s-evt">—</div><div class="sim-td s-mitre">T1046</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
+      <div class="sim-row"><div class="sim-td s-id">007</div><div class="sim-td s-name">RDP Brute Force</div><div class="sim-td s-tools">Hydra</div><div class="sim-td s-rule">100035</div><div class="sim-td s-evt">4625</div><div class="sim-td s-mitre">T1110.001</div><div class="sim-td"><span class="badge b-prog">In Progress</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- SKILLS                                                           -->
+<!-- EDIT: Add or remove skill pills inside each .sg-pills div        -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><div class="label">Capability Matrix</div></div>
+    <h2 class="section-heading">Technical <strong>Skills</strong></h2>
+    <p class="section-subtext">Hands-on proficiency validated through lab builds and adversary simulations — not just coursework.</p>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <div class="sg-title">SIEM &amp; Detection Engineering</div>
+        <div class="sg-pills">
+          <!-- EDIT: Add/remove individual skill pills below -->
+          <span class="pill">Wazuh 4.x</span>
+          <span class="pill">Log Analysis</span>
+          <span class="pill">Alert Triage</span>
+          <span class="pill">Custom Rule Writing</span>
+          <span class="pill">MITRE ATT&amp;CK</span>
+          <span class="pill">Incident Detection</span>
+          <span class="pill">FIM</span>
+          <span class="pill">Sysmon</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="sg-title">Network &amp; Infrastructure</div>
+        <div class="sg-pills">
+          <span class="pill">pfSense</span>
+          <span class="pill">Network Segmentation</span>
+          <span class="pill">Firewall Rules</span>
+          <span class="pill">VirtualBox</span>
+          <span class="pill">Wireshark</span>
+          <span class="pill">TCP/IP</span>
+          <span class="pill">DNS / DHCP</span>
+          <span class="pill">NAT</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="sg-title">Windows &amp; Active Directory</div>
+        <div class="sg-pills">
+          <span class="pill">Windows Server 2019</span>
+          <span class="pill">Active Directory</span>
+          <span class="pill">Group Policy</span>
+          <span class="pill">PowerShell</span>
+          <span class="pill">Windows Event IDs</span>
+          <span class="pill">Audit Policy</span>
+          <span class="pill">CIS Benchmarks</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="sg-title">Offensive Tools &amp; Compliance</div>
+        <div class="sg-pills">
+          <span class="pill">Kali Linux</span>
+          <span class="pill">Nmap</span>
+          <span class="pill">Hydra</span>
+          <span class="pill">Metasploit</span>
+          <span class="pill">enum4linux</span>
+          <span class="pill">PCI-DSS</span>
+          <span class="pill">KYC / AML</span>
+          <span class="pill">Python</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="sg-title">Financial Crime Domain</div>
+        <div class="sg-pills">
+          <span class="pill">Fraud Detection</span>
+          <span class="pill">KYC Verification</span>
+          <span class="pill">AML Compliance</span>
+          <span class="pill">Transaction Monitoring</span>
+          <span class="pill">Suspicious Activity</span>
+          <span class="pill">Risk Assessment</span>
+          <span class="pill">CBK Regulations</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="sg-title">Soft Skills</div>
+        <div class="sg-pills">
+          <span class="pill">Analytical Thinking</span>
+          <span class="pill">Pattern Recognition</span>
+          <span class="pill">Technical Writing</span>
+          <span class="pill">Self-Direction</span>
+          <span class="pill">Attention to Detail</span>
+          <span class="pill">Direct Communication</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ROADMAP                                                          -->
+<!-- EDIT: Update timeframes, role names, and bullet items            -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="roadmap">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><div class="label">Forward Trajectory</div></div>
+    <h2 class="section-heading">Career <strong>Roadmap</strong></h2>
+    <p class="section-subtext">A deliberate path from entry-level SOC operations to specialised independent consulting. Each stage is a milestone, not a deadline.</p>
+
+    <div class="roadmap-grid">
+
+      <!-- ── STAGE 1 (CURRENT) ── -->
+      <div class="roadmap-stage current">
+        <div class="rs-time">Now → 12 months</div>
+        <div class="rs-title">Stage I — Entry</div>
+        <div class="rs-role">Tier 1 / Tier 2 SOC Analyst</div>
+        <ul class="rs-list">
+          <li>Land remote SOC role at MSSP or remote-first security team</li>
+          <li>Earn <strong>SC-200</strong> (Microsoft Security Operations Analyst)</li>
+          <li>Master alert triage, incident escalation, and shift handover at scale</li>
+          <li>Build production detection rules in a real SIEM environment</li>
+        </ul>
+      </div>
+
+      <!-- ── STAGE 2 ── -->
+      <div class="roadmap-stage">
+        <div class="rs-time">12 — 36 months</div>
+        <div class="rs-title">Stage II — Specialisation</div>
+        <div class="rs-role">Detection Engineer / Threat Hunter</div>
+        <ul class="rs-list">
+          <li>Earn <strong>AZ-500</strong> (Microsoft Azure Security Engineer)</li>
+          <li>Specialise in <strong>financial sector threat detection</strong> and fraud analytics</li>
+          <li>Lead detection-as-code initiatives and detection rule reviews</li>
+          <li>Begin contributing to public threat intelligence and write-ups</li>
+        </ul>
+      </div>
+
+      <!-- ── STAGE 3 ── -->
+      <div class="roadmap-stage">
+        <div class="rs-time">3 — 5 years</div>
+        <div class="rs-title">Stage III — Authority</div>
+        <div class="rs-role">Senior / Lead — Independent Consultant</div>
+        <ul class="rs-list">
+          <li>Recognised specialist in <strong>fintech &amp; financial sector security operations</strong></li>
+          <li>Independent consulting practice — sought out by clients, not chasing them</li>
+          <li>Speaker, writer, and contributor to the global blue team community</li>
+          <li>Long-term: becoming a <strong>sought-after specialist</strong> clients seek out independently</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- LEARNING LOG                                                     -->
+<!-- EDIT: Add new entries at the top. Copy a full <div class="log-item"> block. -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="learning">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><div class="label">Continuous Growth</div></div>
+    <h2 class="section-heading">Learning <strong>Log</strong></h2>
+    <p class="section-subtext">A running record of recent technical milestones, breakthroughs, and lessons learned. Latest entries first.</p>
+
+    <div class="log-list">
+      <div class="log-item">
+        <div class="log-date">Recent</div>
+        <div class="log-text">Finalised <strong>Wazuh custom rule 100035</strong> — credential stuffing detection (5+ failures in 60s, single source IP).</div>
+        <div class="log-tag">Detection Eng</div>
+      </div>
+      <div class="log-item">
+        <div class="log-date">Recent</div>
+        <div class="log-text">Completed <strong>three full attack scenarios</strong> in the Financial Fraud Threat Detection Pipeline — ATO, Insider Threat, Lateral Movement.</div>
+        <div class="log-tag">Portfolio</div>
+      </div>
+      <div class="log-item">
+        <div class="log-date">Recent</div>
+        <div class="log-text">Resolved <strong>DC01 audit policy issue</strong> via registry: <code style="color:var(--gold);font-family:var(--mono);font-size:0.78rem">SCENoApplyLegacyAuditPolicy=1</code>. Events 4625, 4720, 4728, 1102, 4740 confirmed in alerts.json.</div>
+        <div class="log-tag">Lab Build</div>
+      </div>
+      <div class="log-item">
+        <div class="log-date">Earlier</div>
+        <div class="log-text">Configured <strong>pfSense syslog forwarding</strong> to Wazuh on port 514 — full firewall telemetry now flowing into the SIEM.</div>
+        <div class="log-tag">Networking</div>
+      </div>
+      <div class="log-item">
+        <div class="log-date">Earlier</div>
+        <div class="log-text">Stood up <strong>Active Directory domain SOCLAB.local</strong> with simulation users (jkamau, gwanjiku, itsupport_backup) and proper audit policy.</div>
+        <div class="log-tag">Active Dir</div>
+      </div>
+      <div class="log-item">
+        <div class="log-date">Earlier</div>
+        <div class="log-text">Completed <strong>one-week SOC job shadowing</strong> programme with a SOC Specialist at KCB Bank.</div>
+        <div class="log-tag">Mentorship</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- CONTACT                                                          -->
+<!-- EDIT: Update social links and the "Why Hire Me" panel            -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><div class="label">Connect</div></div>
+    <h2 class="section-heading">Get In <strong>Touch</strong></h2>
+
+    <div class="contact-grid">
+      <div>
+        <div class="avail-tag"><div class="avail-dot"></div>Open to Remote SOC Roles</div>
+
+        <!-- EDIT: Contact intro paragraph -->
+        <p class="contact-intro">Targeting <strong>remote Tier 1 SOC Analyst</strong> positions at MSSPs and remote-first security teams. Documented hands-on lab work, financial sector fraud expertise, and certifications from CompTIA, Cisco, and ISC2.<br><br>Based in <strong>Nairobi, Kenya</strong> — UTC+3, providing natural shift overlap for 24/7 SOC operations.</p>
+
+        <div class="contact-links">
+          <!-- EDIT: GitHub URL & display text -->
+          <a href="https://github.com/Moses-Kinuthia" target="_blank" class="contact-link">
+            <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+            <div><div class="cl-label">GitHub</div><div class="cl-value">github.com/Moses-Kinuthia</div></div>
+            <span class="cl-arr">→</span>
+          </a>
+
+          <!-- EDIT: LinkedIn URL & display text -->
+          <a href="https://www.linkedin.com/in/moses-waweru-kinuthia" target="_blank" class="contact-link">
+            <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+            <div><div class="cl-label">LinkedIn</div><div class="cl-value">in/moses-waweru-kinuthia</div></div>
+            <span class="cl-arr">→</span>
+          </a>
+
+          <!-- EDIT: Replace placeholder email below with your actual email when ready -->
+          <a href="mailto:your.email@example.com" class="contact-link">
+            <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><div class="cl-label">Email</div><div class="cl-value">your.email@example.com</div></div>
+            <span class="cl-arr">→</span>
+          </a>
+
+          <div class="contact-link" style="cursor:default;">
+            <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="cl-label">Location</div><div class="cl-value">Nairobi, Kenya — UTC +3</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDIT: "Why Hire Me" panel — your closing pitch -->
+      <div class="why-panel">
+        <div class="why-title">Why Hire Me</div>
+        <div class="why-body">
+          <p>Most entry-level candidates have only coursework. I have a <strong>fully operational lab</strong> with documented attack simulations, custom detection rules, and real Wazuh alert output.</p>
+          <p>My <strong>background at KCB Bank</strong> in fraud detection means I understand the financial threat landscape from the inside. Account takeover, insider fraud, and data exfiltration are not abstract concepts — I have seen them in real customer accounts.</p>
+          <p>I am detail-oriented, self-directed, and building toward a long-term career in security operations. I do not need hand-holding — I need the opportunity to prove it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- FOOTER — EDIT: Year and links                                    -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-copy">© 2026 Moses Kinuthia · Built from <a href="https://github.com/Moses-Kinuthia" target="_blank">github.com/Moses-Kinuthia</a></div>
+  <div class="footer-links">
+    <a href="https://github.com/Moses-Kinuthia" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/moses-waweru-kinuthia" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+// ───── PHOTO UPLOAD (saves to browser memory only — for live editing preview) ─────
+const input = document.getElementById('photo-input');
+const img = document.getElementById('profile-photo');
+const placeholder = document.getElementById('photo-placeholder');
+input.addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    img.src = ev.target.result;
+    img.style.display = 'block';
+    placeholder.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+});
+
+// ───── SCROLL FADE-IN ─────
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.project-card,.lab-comp,.skill-group,.cert-row,.sim-row,.contact-link,.event-row,.timeline-item,.roadmap-stage,.log-item,.fact-row,.side-panel').forEach(el => {
+  el.style.opacity='0'; el.style.transform='translateY(14px)';
+  el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+  obs.observe(el);
+});
+</script>
+
+</body>
+</html>
