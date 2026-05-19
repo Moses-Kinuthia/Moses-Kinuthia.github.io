@@ -104,8 +104,8 @@ nav { position:fixed; top:0; left:0; right:0; z-index:900; height:68px; display:
 .hero-right { position:relative; z-index:1; animation:riseIn 1.1s ease both; }
 .photo-frame { position:relative; width:100%; aspect-ratio:1/1; max-height:380px; background:var(--navy-panel); border:1px solid var(--gold-line); overflow:hidden; cursor:pointer; }
 .photo-frame::before { content:''; position:absolute; top:14px; right:-14px; bottom:-14px; left:14px; border:1px solid rgba(201,168,76,0.18); z-index:-1; }
-.photo-frame img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease; }
-.photo-frame:hover img { transform:scale(1.03); }
+.photo-frame img { width:100%; height:100%; object-fit:cover; object-position:50% 15%; display:block; }
+
 .photo-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; color:var(--slate-dim); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; text-align:center; padding:2rem; transition:all 0.2s; }
 .photo-placeholder svg { width:52px; height:52px; opacity:0.3; stroke:currentColor; fill:none; stroke-width:1; }
 .photo-placeholder .pp-hint { opacity:0.4; font-size:0.68rem; text-transform:none; letter-spacing:0.05em; }
@@ -146,6 +146,10 @@ section { padding:7rem 4rem; position:relative; }
 .cert-check svg { width:10px; height:10px; stroke:var(--gold); fill:none; stroke-width:2.5; }
 .cert-name { font-size:0.84rem; font-weight:500; color:var(--off-white); display:block; margin-bottom:0.2rem; }
 .cert-org { font-size:0.7rem; color:var(--slate); }
+.cert-check.inprog { background:rgba(255,183,77,0.08); border-color:rgba(255,183,77,0.35); }
+.cert-check.inprog svg { stroke:var(--amber); }
+.cert-org.inprog { color:var(--amber); }
+
 .fact-row { display:flex; justify-content:space-between; padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.78rem; }
 .fact-row:last-child { border-bottom:none; }
 .fact-key { color:var(--slate); }
@@ -351,6 +355,7 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
     <li><a href="#simulations">Simulations</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#learning">Log</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
 </nav>
@@ -381,9 +386,9 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
 
     <!-- EDIT: Stats -->
     <div class="hero-stats">
-      <div><span class="hstat-n">5</span><span class="hstat-l">Certifications</span></div>
-      <div><span class="hstat-n">7</span><span class="hstat-l">Documented Sims</span></div>
-      <div><span class="hstat-n">8</span><span class="hstat-l">Event IDs Monitored</span></div>
+      <div><span class="hstat-n">3</span><span class="hstat-l">Certifications Held</span></div>
+      <div><span class="hstat-n">5</span><span class="hstat-l">Documented Sims</span></div>
+      <div><span class="hstat-n">17</span><span class="hstat-l">Custom Rules Built</span></div>
       <div><span class="hstat-n">UTC+3</span><span class="hstat-l">Timezone</span></div>
     </div>
 
@@ -394,16 +399,9 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
   </div>
 
   <div class="hero-right">
-    <div class="photo-frame" onclick="document.getElementById('photo-input').click()" title="Click to upload your photo">
+    <div class="photo-frame">
       <img id="profile-photo" src="profile.jpg" alt="Moses Kinuthia" style="display:block;">
-      <div class="photo-placeholder" id="photo-placeholder">
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <div>Upload Your Photo</div>
-        <div class="pp-hint">Click to add your professional headshot</div>
-      </div>
-      <div class="photo-hover-label">Click to change photo</div>
     </div>
-    <input type="file" id="photo-input" accept="image/*">
   </div>
 </section>
 
@@ -448,8 +446,7 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
           <div class="cert-row"><div class="cert-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><span class="cert-name">CompTIA Security+</span><span class="cert-org">CompTIA</span></div></div>
           <div class="cert-row"><div class="cert-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><span class="cert-name">CyberOps Associate</span><span class="cert-org">Cisco</span></div></div>
           <div class="cert-row"><div class="cert-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><span class="cert-name">Certified in Cybersecurity (CC)</span><span class="cert-org">ISC2</span></div></div>
-          <div class="cert-row"><div class="cert-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><span class="cert-name">Introduction to Log Analysis</span><span class="cert-org">Red Team Leaders</span></div></div>
-          <div class="cert-row"><div class="cert-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><span class="cert-name">Python &amp; Machine Learning</span><span class="cert-org">Various Issuers</span></div></div>
+          <div class="cert-row"><div class="cert-check inprog"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4" stroke-dasharray="3 2"/></svg></div><div><span class="cert-name">SC-200 Security Operations Analyst</span><span class="cert-org inprog">Microsoft · In Progress</span></div></div>
         </div>
 
         <div class="side-panel">
@@ -577,9 +574,9 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
         <div class="event-row"><span class="eid">4720</span><span class="edesc">User account created — persistence indicator</span></div>
         <div class="event-row"><span class="eid">4728</span><span class="edesc">Added to security group — privilege escalation</span></div>
         <div class="event-row"><span class="eid">1102</span><span class="edesc">Audit log cleared — anti-forensics</span></div>
-        <div class="event-row"><span class="eid">4740</span><span class="edesc">Account locked out — credential stuffing signal</span></div>
-        <div class="event-row"><span class="eid">4648</span><span class="edesc">Explicit credential use — pass-the-hash</span></div>
-        <div class="event-row"><span class="eid">4672</span><span class="edesc">Special privileges assigned — privilege use</span></div>
+        <div class="event-row"><span class="eid">4740</span><span class="edesc">Account locked out — brute force / ATO signal</span></div>
+        <div class="event-row"><span class="eid">4769</span><span class="edesc">Kerberos TGS request — Kerberoasting detection (RC4/DES filter)</span></div>
+        <div class="event-row"><span class="eid">4104</span><span class="edesc">PowerShell script-block logging — execution visibility</span></div>
       </div>
     </div>
   </div>
@@ -597,11 +594,11 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
       <!-- ── PROJECT 01 (FEATURED) — RENAMED & CALIBRATED ── -->
       <div class="project-card featured">
         <div class="proj-label"><span class="proj-num">Project 01</span><span class="proj-badge">Featured</span></div>
-        <h3 class="proj-title">Active Directory Attack Detection &amp; Monitoring Pipeline</h3>
+        <h3 class="proj-title">Financial Fraud → Cyber Threat Detection Pipeline</h3>
         <p class="proj-desc">Windows-focused detection and monitoring pipeline built inside a segmented SOC lab using Wazuh, Sysmon, pfSense, and Active Directory. Simulates realistic attack scenarios — credential spraying, SMB enumeration, privilege escalation, account lockouts, lateral movement, and audit log clearing — with detection logic validated through Windows Event IDs, Sysmon telemetry, Wazuh correlation rules, and MITRE ATT&amp;CK mapping. Financial-fraud context was used to shape rule design.</p>
-        <div class="proj-outcome"><strong>Outcome:</strong> Three full attack scenarios documented end-to-end with verified detection coverage across 8 Windows Event IDs and 5+ custom Wazuh rules.</div>
+        <div class="proj-outcome"><strong>Outcome:</strong> Three full attack scenarios documented end-to-end with verified detection coverage across 8 Windows Event IDs and 17 custom Wazuh detection rules.</div>
         <div class="proj-scenarios">
-          <div class="proj-scenario"><span class="ps-letter">A</span><span class="ps-text">Credential Spraying — nmap recon, enum4linux, netexec SMB → Event 4625 / 4740 detection</span></div>
+          <div class="proj-scenario"><span class="ps-letter">A</span><span class="ps-text">Brute Force → ATO — nmap recon, enum4linux-ng, netexec SMB → custom rules 100001/100033, Events 4625/4740</span></div>
           <div class="proj-scenario"><span class="ps-letter">B</span><span class="ps-text">Privileged Account Abuse — AD recon, backdoor account creation, group membership changes, log clearing (1102)</span></div>
           <div class="proj-scenario"><span class="ps-letter">C</span><span class="ps-text">Lateral Movement — post-compromise SMB/Kerberos, cross-endpoint detection via Event 4624 Type 3 &amp; 4769</span></div>
         </div>
@@ -629,11 +626,11 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
         <div class="proj-label"><span class="proj-num">Project 03</span></div>
         <h3 class="proj-title">SOC Simulation Write-ups</h3>
         <p class="proj-desc">Incident-style analysis for each adversary simulation — full kill chain documentation: attack execution, SIEM alert firing, analyst triage decision, and detection gaps identified.</p>
-        <div class="proj-outcome"><strong>Outcome:</strong> 7 documented simulations covering brute-force, recon, lateral movement, and anti-forensics — each mapped to MITRE ATT&amp;CK with rule IDs and event IDs verified in Wazuh.</div>
+        <div class="proj-outcome"><strong>Outcome:</strong> 5 documented simulations forming a complete kill chain — recon through domain compromise — each mapped to MITRE ATT&amp;CK with custom rule IDs and event IDs verified in Wazuh.</div>
         <div class="proj-scenarios">
-          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">SMB Brute Force — Hydra, Metasploit / Rule 18152 / Event 4625</span></div>
-          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">Network Recon — Nmap / Wazuh + Suricata alerts / T1046</span></div>
-          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">SMB Enumeration — enum4linux / event correlation / T1087</span></div>
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">SMB Brute Force → ATO — netexec, nmap / Rules 100001, 100033 / Events 4625, 4740</span></div>
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">Network Recon — Nmap / Rule 100027 via pfSense syslog / T1595.001, T1046</span></div>
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">AD Enumeration — enum4linux-ng / Rule 100027 / T1087.002, T1201 — detection gap documented</span></div>
         </div>
         <div class="proj-tags"><span class="ptag">Kali Linux</span><span class="ptag">Triage</span><span class="ptag">Detection Validation</span></div>
         <a href="https://github.com/Moses-Kinuthia/simulation-writeups" target="_blank" class="proj-link">View on GitHub <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
@@ -646,8 +643,8 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
         <p class="proj-desc">Python-based Wazuh alert enrichment script and custom XML rule set. Parses <code style="color:var(--gold)">alerts.json</code> for triage context. Includes <code style="color:var(--gold)">local_rules.xml</code> with detections shaped by financial-fraud risk patterns.</p>
         <div class="proj-outcome"><strong>Outcome:</strong> Custom rules confirmed firing in the lab with correct severity levels — reducing analyst triage time on high-confidence alerts.</div>
         <div class="proj-scenarios">
-          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">Rule 100020 — Level 10 regex, flags Kali Linux activity from attack segment IP range</span></div>
-          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">Rule 100035 — credential stuffing: 5+ failures within 60 seconds from a single source IP</span></div>
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">Rule 100020 — Level 10: Type-3 network logons from attack segment (10.0.20.0/24) — lateral movement signal</span></div>
+          <div class="proj-scenario"><span class="ps-letter">→</span><span class="ps-text">Rule 100033 — brute-force burst: 5+ failed logons in 60 seconds from a single source IP</span></div>
         </div>
         <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Wazuh Rules</span><span class="ptag">Triage Tooling</span></div>
         <a href="https://github.com/Moses-Kinuthia/Financial-Fraud-Cyber-Threat-Detection-Pipeline" target="_blank" class="proj-link">View Repository <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
@@ -675,7 +672,7 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
         <div class="bridge-side">
           <div class="bridge-side-tag">In the SOC Lab</div>
           <h4>Automated Detection Logic</h4>
-          <p>Wazuh Rule 100035 detects 5+ failed logons in 60 seconds from a single source IP — the same credential-stuffing pattern that precedes ATO at the teller window, now caught at the authentication layer.</p>
+          <p>Wazuh Rule 100033 detects 5+ failed logons in 60 seconds from a single source IP — the same brute-force ATO pattern that precedes account takeover at the teller window, now caught automatically at the authentication layer.</p>
         </div>
       </div>
       <div class="bridge-bottom">
@@ -702,13 +699,11 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
         <div class="sim-th">MITRE</div>
         <div class="sim-th">Status</div>
       </div>
-      <div class="sim-row"><div class="sim-td s-id">001</div><div class="sim-td s-name">Credential Stuffing — SMB</div><div class="sim-td s-tools">netexec, nmap, enum4linux</div><div class="sim-td s-rule">18152 / 100035</div><div class="sim-td s-evt">4625, 4740</div><div class="sim-td s-mitre">T1110.003</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
-      <div class="sim-row"><div class="sim-td s-id">002</div><div class="sim-td s-name">Privileged Account Abuse</div><div class="sim-td s-tools">PowerShell, AD cmdlets</div><div class="sim-td s-rule">18110 / 18141</div><div class="sim-td s-evt">4720, 4728</div><div class="sim-td s-mitre">T1078 / T1136</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
-      <div class="sim-row"><div class="sim-td s-id">003</div><div class="sim-td s-name">Audit Log Clearing</div><div class="sim-td s-tools">wevtutil</div><div class="sim-td s-rule">63102</div><div class="sim-td s-evt">1102</div><div class="sim-td s-mitre">T1070.001</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
-      <div class="sim-row"><div class="sim-td s-id">004</div><div class="sim-td s-name">Lateral Movement</div><div class="sim-td s-tools">SMB / Kerberos</div><div class="sim-td s-rule">18152</div><div class="sim-td s-evt">4624, 4769</div><div class="sim-td s-mitre">T1021.002</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
-      <div class="sim-row"><div class="sim-td s-id">005</div><div class="sim-td s-name">SMB Brute Force</div><div class="sim-td s-tools">Hydra, Metasploit</div><div class="sim-td s-rule">18152</div><div class="sim-td s-evt">4625</div><div class="sim-td s-mitre">T1110</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
-      <div class="sim-row"><div class="sim-td s-id">006</div><div class="sim-td s-name">Network Reconnaissance</div><div class="sim-td s-tools">Nmap</div><div class="sim-td s-rule">Suricata</div><div class="sim-td s-evt">—</div><div class="sim-td s-mitre">T1046</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
-      <div class="sim-row"><div class="sim-td s-id">007</div><div class="sim-td s-name">RDP Brute Force</div><div class="sim-td s-tools">Hydra</div><div class="sim-td s-rule">100035</div><div class="sim-td s-evt">4625</div><div class="sim-td s-mitre">T1110.001</div><div class="sim-td"><span class="badge b-prog">In Progress</span></div></div>
+      <div class="sim-row"><div class="sim-td s-id">001</div><div class="sim-td s-name">SMB Brute Force → Account Takeover</div><div class="sim-td s-tools">netexec, nmap</div><div class="sim-td s-rule">100001 / 100033</div><div class="sim-td s-evt">4625, 4740</div><div class="sim-td s-mitre">T1110, T1078</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
+      <div class="sim-row"><div class="sim-td s-id">002</div><div class="sim-td s-name">Network Reconnaissance</div><div class="sim-td s-tools">Nmap</div><div class="sim-td s-rule">100027</div><div class="sim-td s-evt">—</div><div class="sim-td s-mitre">T1595.001, T1046</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
+      <div class="sim-row"><div class="sim-td s-id">003</div><div class="sim-td s-name">AD Enumeration</div><div class="sim-td s-tools">enum4linux-ng</div><div class="sim-td s-rule">100027</div><div class="sim-td s-evt">—</div><div class="sim-td s-mitre">T1087.002, T1201</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
+      <div class="sim-row"><div class="sim-td s-id">004</div><div class="sim-td s-name">Insider Threat — Backdoor + Log Clearing</div><div class="sim-td s-tools">PowerShell, wevtutil</div><div class="sim-td s-rule">100110 / 100012</div><div class="sim-td s-evt">4720, 4728, 1102</div><div class="sim-td s-mitre">T1136.001, T1070.001</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
+      <div class="sim-row"><div class="sim-td s-id">005</div><div class="sim-td s-name">Lateral Movement — SMB Pivot + Kerberoasting</div><div class="sim-td s-tools">netexec SMB/LDAP</div><div class="sim-td s-rule">100020 / 100022</div><div class="sim-td s-evt">4624, 4769</div><div class="sim-td s-mitre">T1021.002, T1558.003</div><div class="sim-td"><span class="badge b-done">Complete</span></div></div>
     </div>
   </div>
 </section>
@@ -732,6 +727,7 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
           <span class="pill">Detection Validation</span>
           <span class="pill">MITRE ATT&amp;CK Mapping</span>
           <span class="pill">FIM</span>
+          <span class="pill">Custom Rule Writing</span>
         </div>
       </div>
 
@@ -761,14 +757,25 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
       </div>
 
       <div class="skill-group">
-        <div class="sg-title">Security Tooling</div>
+        <div class="sg-title">Attack Simulation Tooling</div>
         <div class="sg-pills">
           <span class="pill">Kali Linux</span>
           <span class="pill">Nmap</span>
+          <span class="pill">netexec</span>
+          <span class="pill">enum4linux-ng</span>
           <span class="pill">Hydra</span>
           <span class="pill">Metasploit (Basic)</span>
-          <span class="pill">enum4linux</span>
-          <span class="pill">netexec</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title">Scripting &amp; Automation</div>
+        <div class="sg-pills">
+          <span class="pill">Python</span>
+          <span class="pill">PowerShell</span>
+          <span class="pill">Wazuh Rule XML</span>
+          <span class="pill">n8n Workflow Automation</span>
+          <span class="pill">API Integration</span>
+          <span class="pill">Log Parsing</span>
         </div>
       </div>
 
@@ -858,12 +865,12 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
     <div class="log-list">
       <div class="log-item">
         <div class="log-date">Recent</div>
-        <div class="log-text">Finalised <strong>Wazuh custom rule 100035</strong> — credential stuffing detection (5+ failures in 60s, single source IP).</div>
+        <div class="log-text">Authored <strong>17 custom Wazuh detection rules</strong> — brute force, lateral movement, insider threat, anti-forensics, and PowerShell visibility. All validated in the lab.</div>
         <div class="log-tag">Detection Eng</div>
       </div>
       <div class="log-item">
         <div class="log-date">Recent</div>
-        <div class="log-text">Completed <strong>three full attack scenarios</strong> in the AD Attack Detection Pipeline — credential spraying, privileged abuse, lateral movement.</div>
+        <div class="log-text">Completed <strong>five kill-chain simulations</strong> — network recon through domain compromise — each documented as a full incident report with detection gaps and MITRE mapping.</div>
         <div class="log-tag">Portfolio</div>
       </div>
       <div class="log-item">
@@ -900,7 +907,7 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
       <div>
         <div class="avail-tag"><div class="avail-dot"></div>Open to Remote SOC Roles</div>
 
-        <p class="contact-intro">Targeting <strong>remote Tier 1 / Tier 2 SOC Analyst</strong> roles at MSSPs and remote-first security teams. Documented hands-on lab work, banking operations and fraud-risk background, and certifications from CompTIA, Cisco, and ISC2.<br><br>Based in <strong>Nairobi, Kenya</strong> — UTC+3, providing natural shift overlap for 24/7 SOC operations.</p>
+        <p class="contact-intro">Exploring <strong>SOC Analyst and Security Operations</strong> roles — onsite in Nairobi, hybrid, or remote — where banking fraud experience and hands-on detection engineering add immediate value.<br><br>Three certifications held, 17 custom detection rules built and validated, and five documented attack simulations from recon to domain compromise. Based in <strong>Nairobi, Kenya</strong> — UTC+3.</p>
 
         <div class="contact-links">
           <a href="https://github.com/Moses-Kinuthia" target="_blank" class="contact-link">
@@ -916,7 +923,7 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
           </a>
 
           <!-- EDIT: Replace placeholder email with your real one -->
-          <a href="mailto:your.email@example.com" class="contact-link">
+          <a href="mailto:moseskinuthia73@gmail.com" class="contact-link">
             <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
             <div><div class="cl-label">Email</div><div class="cl-value">moseskinuthia73@gmail.com</div></div>
             <span class="cl-arr">→</span>
@@ -935,7 +942,8 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
         <div class="why-body">
           <p>I have built and operated a segmented SOC lab covering Windows telemetry, Wazuh detection rules, Active Directory monitoring, and adversary simulation. The infrastructure is functional, the detections fire as designed, and every simulation is documented publicly — so my work can be inspected before an interview, not just described in one.</p>
           <p>My banking background at KCB adds something I find genuinely useful in SOC work: practical familiarity with fraud indicators, escalation discipline, and operational accuracy in regulated environments. I have spent years recognising suspicious patterns under pressure — a habit that transfers naturally into alert triage.</p>
-          <p>I am early in this career, fast to learn from people doing the work professionally, and looking for a team where I can contribute steadily while developing into a strong analyst.</p>
+          <p>I have also built automation tooling — a Python alert enrichment pipeline with AbuseIPDB integration and a workflow automation system using n8n and GPT APIs. This is not a claim about AI expertise; it is evidence that I think about analyst workload reduction, not just rule coverage.</p>
+          <p>I am early in this career, fast to learn from people doing the work professionally, and looking for a team where I can contribute steadily while growing into a strong analyst.</p>
         </div>
       </div>
     </div>
@@ -951,20 +959,6 @@ footer { background:var(--navy-panel); border-top:1px solid rgba(201,168,76,0.1)
 </footer>
 
 <script>
-const input = document.getElementById('photo-input');
-const img = document.getElementById('profile-photo');
-const placeholder = document.getElementById('photo-placeholder');
-input.addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(ev) {
-    img.src = ev.target.result;
-    img.style.display = 'block';
-    placeholder.style.display = 'none';
-  };
-  reader.readAsDataURL(file);
-});
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
